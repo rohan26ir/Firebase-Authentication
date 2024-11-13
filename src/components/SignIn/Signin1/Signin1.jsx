@@ -36,12 +36,33 @@ const Signin1 = () => {
   return (
     <div className='flex flex-col justify-center items-center space-y-5 my-16'>
 
-      <h3 className='text-2xl font-bold text-white'>Sign in page</h3>
+      <h3 className='text-2xl font-bold text-white'>Simple <span className='border-b-2'>Sign in/out</span> Page</h3>
 
       <div className='flex justify-center items-center'>
          <div className='px-6 py-1 rounded-xl text-black bg-orange-500 hover:bg-orange-600' onClick={handleSignin1}>Sign in with Google</div>
       </div>
 
+
+      <div className='space-y-4 border-2 border-orange-600 p-5 rounded-lg'>
+        <h2 className='text-center bg-rose-600 py-2 text-black font-bold'>Use Condition </h2>
+        <div className='text-center'>
+        <h2>If sign in then show sign out. <br />But if not "Sign in" then the "Sign out" Button will not show</h2>
+        </div>
+
+        <div>
+          {
+            user ? 
+            <div className='flex justify-center items-center my-5'>
+            <div className='px-6 py-1 rounded-xl text-black bg-blue-400 hover:bg-blue-600' onClick={handleSignout1}>Sign Out</div>
+            </div>
+            :
+            <div className='flex justify-center items-center'>
+            <div className='px-6 py-1 rounded-xl text-black bg-blue-400 hover:bg-blue-600' onClick={handleSignin1}>Sign in with Google</div>
+            </div> 
+            
+          }
+        </div>
+      </div>
 
       <div>
         {
