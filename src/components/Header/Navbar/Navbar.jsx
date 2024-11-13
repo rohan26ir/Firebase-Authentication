@@ -7,6 +7,7 @@ const Navbar = () => {
     <li><NavLink to={'/google'}>Google</NavLink></li>
     <li><NavLink to={'/github'}>GitHub</NavLink></li>
     <li><NavLink to={'/login'}>Log in</NavLink></li>
+    <li><NavLink to={'/register'}>Register</NavLink></li>
   </>
   return (
     <div>
