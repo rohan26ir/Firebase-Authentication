@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import auth from '../../Firebase/FirebaseG';
 
 const Signin1 = () => {
@@ -22,6 +22,17 @@ const Signin1 = () => {
       setUser(null)
     });
   }
+
+  const handleSignout1 = () =>{
+    signOut(auth)
+    .then(() => {
+      console.log("Sign out done");
+      setUser(null)
+    })
+    .catch(error => console.log(error))
+
+  }
+
   return (
     <div className='flex flex-col justify-center items-center space-y-5 my-16'>
 
@@ -34,7 +45,8 @@ const Signin1 = () => {
 
       <div>
         {
-          user && <div className='bg-white w-[100%] p-4 rounded-lg shadow-2xl'>
+          user && <div>
+            <div className='bg-white w-[100%] p-4 rounded-lg shadow-2xl'>
               <div className='flex justify-center'>
                 <div className=''><img className='rounded-full' src={user.photoURL} alt="" /></div>
               </div>
@@ -43,8 +55,15 @@ const Signin1 = () => {
                 <p>Email: {user.email}</p>
               </div>
           </div>
+
+      <div className='flex justify-center items-center my-5'>
+         <div className='px-6 py-1 rounded-xl text-black bg-orange-500 hover:bg-orange-600' onClick={handleSignout1}>Sign Out</div>
+      </div>
+          </div>
         }
       </div>
+
+
     </div>
   );
 };
