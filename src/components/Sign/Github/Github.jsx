@@ -67,9 +67,9 @@ const Github = () => {
       <div>
         {
           user && <div>
-            <div className='bg-white w-[100%] p-4 rounded-lg shadow-2xl'>
+            <div className='bg-white w-[300px] p-4 rounded-lg shadow-2xl'>
               <div className='flex justify-center'>
-                <div className=''><img className='rounded-full' src={user.photoURL} alt="" /></div>
+                <div className=''><img className='rounded-full h-28' src={user.photoURL} alt="" /></div>
               </div>
               <div className='text-black my-5'>
                 <h3>Name: {user.displayName}</h3>

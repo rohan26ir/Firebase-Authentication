@@ -10,6 +10,8 @@ import Error from './components/Error/Error';
 import Roots from './components/Roots/Roots';
 import Github from './components/Sign/Github/Github';
 import Google from './components/Sign/Google/Google';
+import Login from './components/Sign/LogIn/Login';
+import Register from './components/Sign/LogIn/Register';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +29,15 @@ const router = createBrowserRouter([
       {
         path: '/github',
         element: <Github></Github>,
-      }
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/register',
+        element: <Register></Register>
+      },
     ]
   },
 ]);
