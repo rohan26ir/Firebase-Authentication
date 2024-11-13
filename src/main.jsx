@@ -8,8 +8,8 @@ import {
 import Home from './components/Home/Home';
 import Error from './components/Error/Error';
 import Roots from './components/Roots/Roots';
-import Signout1 from './components/SignOut/Signout1/Signout1';
-import Signin1 from './components/SignIn/Signin1/Signin1';
+import Github from './components/Sign/Github/Github';
+import Google from './components/Sign/Google/Google';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,12 +21,12 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: '/signin',
-        element: <Signin1></Signin1>
+        path: '/google',
+        element: <Google></Google>
       },
       {
-        path: '/signout',
-        element: <Signout1></Signout1>
+        path: '/github',
+        element: <Github></Github>,
       }
     ]
   },

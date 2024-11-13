@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import auth from '../../Firebase/FirebaseG';
 
-const Signin1 = () => {
+const Google = () => {
   const [user, setUser] = useState(null);
 
   // const provider = new GoogleAuthProvider()
@@ -89,4 +89,4 @@ const Signin1 = () => {
   );
 };
 
-export default Signin1;
+export default Google;
