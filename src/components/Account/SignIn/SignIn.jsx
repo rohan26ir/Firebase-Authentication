@@ -13,7 +13,7 @@ const SignIn = () => {
   const navigate = useNavigate()
 
   // for useContext
-  const { signInUser } = useContext(AuthContext)
+  const { signInUser, signInWithGoogle  } = useContext(AuthContext)
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -57,6 +57,11 @@ const SignIn = () => {
         });
     }
   };
+
+  const handleSignInGoogle = () => {
+    signInWithGoogle()
+
+  }
 
   return (
     <div>
@@ -126,7 +131,14 @@ const SignIn = () => {
               Sign in is successful.
             </p>
           )}
+
+
+        <div className="flex justify-center mb-3">
+          <button onClick={handleSignInGoogle} className="btn btn-primary"><span className="text-rose-600 text-xl font-bold">G</span> Sign in Google</button>
         </div>
+
+        </div>
+
       </div>
     </div>
   );
