@@ -32,9 +32,17 @@ const Navbar = () => {
       <li>
         <NavLink to={"/register"}>Register</NavLink>
       </li>
+      {
+        user 
+        ?
+        <li>
+        <NavLink to={"/profile"}>Profile</NavLink>
+      </li>
+      :
       <li>
         <NavLink to={"/signin"}>SignIn</NavLink>
-      </li>
+      </li> 
+      }
       <li>
         <NavLink to={"/signup"}>SignUp</NavLink>
       </li>

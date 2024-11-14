@@ -1,6 +1,6 @@
 import { sendPasswordResetEmail } from "firebase/auth";
 import React, { useRef, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../Firebase/FirebaseG";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
@@ -10,6 +10,7 @@ const SignIn = () => {
   const [user, setUser] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const emailRef = useRef();
+  const navigate = useNavigate()
 
   // for useContext
   const { signInUser } = useContext(AuthContext)
@@ -26,6 +27,8 @@ const SignIn = () => {
     signInUser(email, password)
       .then((result) => {
         setUser(result.user);
+        event.target.reset();
+        navigate('/')
 
         if (!result.user.emailVerified) {
           setErrorMessage('Please verify your email');

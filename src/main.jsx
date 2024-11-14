@@ -17,6 +17,7 @@ import SignUp from './components/Account/SignIn/SignUp';
 import SignIn from './components/Account/SignIn/SignIn';
 import Oder from './components/Privet/Oder';
 import PrivetRoute from './routes/PrivetRoute';
+import Profile from './components/Privet/Profile';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,8 +53,12 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>
       },
       {
-        path: 'oder',
+        path: '/oder',
         element: <PrivetRoute><Oder></Oder></PrivetRoute>
+      },
+      {
+        path: '/profile',
+        element: <PrivetRoute><Profile></Profile></PrivetRoute>
       }
     ]
   },

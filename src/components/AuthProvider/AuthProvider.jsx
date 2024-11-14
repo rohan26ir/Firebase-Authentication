@@ -9,31 +9,24 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({children}) => {
 
   const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   const name = 'sagor'
 
   const createUser = (email, password) =>{
+    setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password)
   }
 
   const signInUser = (email, password) => {
+    setLoading(true)
     return signInWithEmailAndPassword(auth, email, password)
   }
 
   const signOutUser = () => {
+    setLoading(true)
     return signOut(auth)
   }
-
-  // onAuthStateChanged(auth, currentUser => {
-  //   if(currentUser){
-  //     console.log("currentUser logged user", currentUser);
-  //     setUser(currentUser)
-  //   }
-  //   else{
-  //     console.log("No Useer log in");
-  //     setUser(null)
-  //   }
-  // })
 
 
   useEffect(() => {
@@ -42,6 +35,7 @@ const AuthProvider = ({children}) => {
       if(currentUser){
         console.log("currentUser logged user", currentUser);
         setUser(currentUser)
+        setLoading(false)
       }
       else{
         console.log("No Useer log in");
@@ -60,7 +54,8 @@ const AuthProvider = ({children}) => {
     createUser,
     signInUser,
     user,
-    signOutUser
+    signOutUser,
+    loading
   }
   return (
     <div>
