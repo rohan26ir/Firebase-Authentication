@@ -1,12 +1,15 @@
 import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import auth from "../../Firebase/FirebaseG";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Register = () => {
   const [errorMassage, setErrorMassage] = useState("");
   const [success, setSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+
 
   const handleCreate = (event) => {
     event.preventDefault();

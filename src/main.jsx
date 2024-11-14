@@ -8,10 +8,13 @@ import {
 import Home from './components/Home/Home';
 import Error from './components/Error/Error';
 import Roots from './components/Roots/Roots';
-import Github from './components/Sign/Github/Github';
-import Google from './components/Sign/Google/Google';
-import Login from './components/Sign/LogIn/Login';
-import Register from './components/Sign/LogIn/Register';
+import Github from './components/Account/Github/Github';
+import Google from './components/Account/Google/Google';
+import Login from './components/Account/LogIn/Login';
+import Register from './components/Account/LogIn/Register';
+import AuthProvider from './components/AuthProvider/AuthProvider';
+import SignUp from './components/Account/SignIn/SignUp';
+import SignIn from './components/Account/SignIn/SignIn';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,12 +41,22 @@ const router = createBrowserRouter([
         path: '/register',
         element: <Register></Register>
       },
+      {
+        path: '/signin',
+        element: <SignIn></SignIn>
+      },
+      {
+        path: '/signup',
+        element: <SignUp></SignUp>
+      }
     ]
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+       <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
