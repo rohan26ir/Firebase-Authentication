@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import React, { createContext } from 'react';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import React, { createContext, useEffect, useState } from 'react';
 import auth from '../Firebase/FirebaseG';
 
 
@@ -7,6 +7,8 @@ import auth from '../Firebase/FirebaseG';
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({children}) => {
+
+  const [user, setUser] = useState(null)
 
   const name = 'sagor'
 
@@ -18,10 +20,42 @@ const AuthProvider = ({children}) => {
     return signInWithEmailAndPassword(auth, email, password)
   }
 
+  // onAuthStateChanged(auth, currentUser => {
+  //   if(currentUser){
+  //     console.log("currentUser logged user", currentUser);
+  //     setUser(currentUser)
+  //   }
+  //   else{
+  //     console.log("No Useer log in");
+  //     setUser(null)
+  //   }
+  // })
+
+
+  useEffect(() => {
+
+    const unSubscribe = onAuthStateChanged(auth, currentUser => {
+      if(currentUser){
+        console.log("currentUser logged user", currentUser);
+        setUser(currentUser)
+      }
+      else{
+        console.log("No Useer log in");
+        setUser(null)
+      }
+    })
+
+    return () => {
+      unSubscribe();
+    }
+
+  },[])
+
   const authInfo ={
     name,
     createUser,
-    signInUser
+    signInUser,
+    user
   }
   return (
     <div>

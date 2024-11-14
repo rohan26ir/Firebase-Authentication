@@ -4,7 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
   //
-  const { name } = useContext(AuthContext);
+  const { name, user } = useContext(AuthContext);
 
   const navUrl = (
     <>
@@ -59,13 +59,19 @@ const Navbar = () => {
               {navUrl}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">In/Out</a>
+          <a className="btn btn-ghost text-xl">{user?.displayName}</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-4">{navUrl}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">{name}</a>
+          <div className="border-4 border-orange-500 rounded-full">
+            <img 
+            className="h-10 w-10 rounded-full"
+            src={user?.photoURL} 
+            alt=""
+            title="Profile image" />
+          </div>
         </div>
       </div>
     </div>

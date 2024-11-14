@@ -1,7 +1,8 @@
-import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
-import React, { useRef, useState } from "react";
+import { sendPasswordResetEmail } from "firebase/auth";
+import React, { useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import auth from "../../Firebase/FirebaseG";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,14 +11,8 @@ const SignIn = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const emailRef = useRef();
 
-
-
-
   // for useContext
   const { signInUser } = useContext(AuthContext)
-  // Exit
-
-
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -25,14 +20,11 @@ const SignIn = () => {
     const email = event.target.elements.email.value;
     const password = event.target.elements.password.value;
     
-    console.log(email, password);
-
     setSuccess(false);
     setErrorMessage('');
 
     signInUser(email, password)
       .then((result) => {
-        console.log(result.user);
         setUser(result.user);
 
         if (!result.user.emailVerified) {
@@ -42,7 +34,6 @@ const SignIn = () => {
         }
       })
       .catch((error) => {
-        console.log("Error:", error.message);
         setErrorMessage(error.message);
         setUser(null);
       });
@@ -59,7 +50,6 @@ const SignIn = () => {
           alert("Password reset email sent to your email.");
         })
         .catch((error) => {
-          console.log("Error:", error.message);
           setErrorMessage(error.message);
         });
     }
@@ -118,7 +108,7 @@ const SignIn = () => {
 
           <Link to={"/signup"}>
             <div className="form-control mb-5 mx-7">
-              <button className="btn btn-primary">sign Up</button>
+              <button className="btn btn-primary">Sign Up</button>
             </div>
           </Link>
 
