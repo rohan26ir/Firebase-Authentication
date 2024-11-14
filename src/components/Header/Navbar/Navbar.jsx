@@ -1,10 +1,19 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+
 
 const Navbar = () => {
   //
-  const { name, user } = useContext(AuthContext);
+  const { signOutUser, user } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    signOutUser()
+    .then(() => {
+      console.log("User Sign Out");
+    })
+    .catch(Error => console.log("User Sign out Error", Error))
+  }
 
   const navUrl = (
     <>
@@ -59,18 +68,31 @@ const Navbar = () => {
               {navUrl}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">{user?.displayName}</a>
+          <div className="flex items-center">
+          {
+            user ? 
+            <>
+              <p onClick={handleSignOut} className="mr-2 px-2 py-1 bg-blue-500 rounded-2xl text-black cursor-pointer">Sign Out</p>
+              <span>{user.displayName}</span>
+            </>
+            : <Link to={'/signIn'}><div className="bg-blue-500 hover:bg-blue-700 text-black px-2 py-1 rounded-3xl">Sign in</div></Link>
+          }
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-4">{navUrl}</ul>
         </div>
         <div className="navbar-end">
-          <div className="border-4 border-orange-500 rounded-full">
-            <img 
-            className="h-10 w-10 rounded-full"
+          <div>
+            {
+              !user ? ' ' 
+              :
+              <img 
+            className="h-8 w-8 rounded-full"
             src={user?.photoURL} 
             alt=""
             title="Profile image" />
+            }
           </div>
         </div>
       </div>

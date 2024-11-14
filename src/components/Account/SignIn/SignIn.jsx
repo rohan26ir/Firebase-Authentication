@@ -125,23 +125,6 @@ const SignIn = () => {
           )}
         </div>
       </div>
-
-      {/* Profile view for signed-in users */}
-      {user && (
-        <div className="bg-white w-[100%] p-4 rounded-lg shadow-2xl text-center">
-          <div className="flex justify-center">
-            <img
-              className="rounded-full"
-              src={user.photoURL || "default-profile.png"}
-              alt="Profile"
-            />
-          </div>
-          <div className="text-black my-5">
-            <h3>Name: {user.displayName || "User"}</h3>
-            <p>Email: {user.email}</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
