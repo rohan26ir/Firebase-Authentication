@@ -28,7 +28,7 @@ const SignIn = () => {
       .then((result) => {
         setUser(result.user);
         event.target.reset();
-        navigate('/')
+        navigate('/profile')
 
         if (!result.user.emailVerified) {
           setErrorMessage('Please verify your email');

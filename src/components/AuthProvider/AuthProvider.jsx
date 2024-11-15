@@ -8,6 +8,8 @@ export const AuthContext = createContext(null);
 
 const googleProvider = new GoogleAuthProvider()
 
+
+
 const AuthProvider = ({children}) => {
 
   const [user, setUser] = useState(null)
@@ -26,7 +28,7 @@ const AuthProvider = ({children}) => {
   }
 
   const signOutUser = () => {
-    setLoading(true)
+    // setLoading(true)
     return signOut(auth)
   }
 
